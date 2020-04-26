@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".test.MainActivity">
 
     <TextView
         android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="10dp"
+        android:text="点击发送：UI线程发送数据"
+        android:textSize="26sp" />
+    <TextView
+        android:id="@+id/tv_content1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="点击发送：其他线程发送数据"
+        android:textSize="26sp" />
 
-</android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_content2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="UI线程监听数据结果："
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tv_content3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="其他线程监听数据结果："
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tv_content4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="点击，查看其他进程监听数据结果"
+        android:textSize="24sp" />
+</LinearLayout>

@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.example.eventhandler.ISendEvent;
 
@@ -16,13 +17,12 @@ public class EventService extends Service {
     public EventService() {
     }
 
-
     @Override
     public IBinder onBind(Intent intent) {
         return new ServiceBinder();
     }
 
-    public class ServiceBinder extends ISendEvent.Stub {
+    private static class ServiceBinder extends ISendEvent.Stub {
         private Map<String, List<IBinder>> stringListMap = new ConcurrentHashMap<>();
 
         @Override
@@ -42,6 +42,7 @@ public class EventService extends Service {
         @Override
         public void addListenerBinder(final String key, final IBinder iBinder) throws RemoteException {
             List<IBinder> eventListeners = stringListMap.get(key);
+            Log.i("siyehua", "addl listtener:" + stringListMap.size());
             if (eventListeners != null && eventListeners.contains(iBinder)) {
                 return;
             }
@@ -65,9 +66,6 @@ public class EventService extends Service {
 
         @Override
         public void removeListenerBinder(String key, IBinder iBinder) throws RemoteException {
-            if (!(iBinder instanceof ISendEvent.Stub)) {
-                return;
-            }
             List<IBinder> eventListeners = stringListMap.get(key);
             if (eventListeners != null) {
                 eventListeners.remove(iBinder);

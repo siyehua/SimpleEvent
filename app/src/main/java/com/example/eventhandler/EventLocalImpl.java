@@ -12,7 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * local event impl
  */
-public class LocalEventImpl implements IEvent {
+public class EventLocalImpl implements IEvent {
     private static final String TAG = "LocalEventImpl";
     /**
      * save event listeners

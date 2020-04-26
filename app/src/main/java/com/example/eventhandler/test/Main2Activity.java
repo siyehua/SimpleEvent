@@ -1,11 +1,10 @@
 package com.example.eventhandler.test;
 
 import android.os.Bundle;
-import android.os.Process;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.eventhandler.Event;
 import com.example.eventhandler.IEvent;
@@ -17,17 +16,20 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        findViewById(R.id.content).setOnClickListener(new View.OnClickListener() {
+        final TextView textView = findViewById(R.id.content);
+        Event.getEventImpl().addRegister(Person.class, new IEvent.EventListener() {
+            @Override
+            public void change(@NonNull String data) {
+                textView.setText("远程服务监听结果：" + data);
+            }
+        }, IEvent.ListenerThread.UI);
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Event.getEventImpl().addRegister(Person.class, new IEvent.EventListener() {
-                    @Override
-                    public void change(@NonNull String data) {
-                        Log.e("siyehua", "current process:" + Process.myPid() + " data: " + data);
-                    }
-                });
+                Event.getEventImpl().sendEvent(Person.class, "new process to other process");
+
+
             }
         });
-
     }
 }

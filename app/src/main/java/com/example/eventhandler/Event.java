@@ -16,12 +16,12 @@ public class Event {
     }
 
     public static void addRemoteListener(Context context) {
-        RemoteEventImpl remoteEvent = new RemoteEventImpl();
+        EventRemoteImpl remoteEvent = new EventRemoteImpl();
         remoteEvent.init(context);
         eventImpl.addEvent(remoteEvent);
     }
 
     public static void start() {
-        eventImpl.addEvent(new LocalEventImpl());
+        eventImpl.addEvent(new EventLocalImpl());
     }
 }
